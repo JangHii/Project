@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="INFO">
+
+<!-- 콘솔출력을 정의하는곳 -->
+	<Appenders> <!-- log4j2의 설정 파일의 한 요소 -->
+		<Console name="Console" target="SYSTEM_OUT"> <!-- 콘솔출력 -->
+			<PatternLayout parttern="%d - %msg%n" /> <!-- parttern : 출력형식정의 / 날짜와 메세지를 출력하는 패턴 -->
+		</Console>
+	</Appenders>
+	
+<!-- 로그처리를 정의하는곳 -->
+	<Loggers>
+		<Root level="INFO"> <!-- Root : 모든 로그 이벤트를 수신하는 로거 -->
+			<AppenderRef ref="Console"></AppenderRef> <!-- Console" Appender 참고해서 로그를 출력한다. -->
+		</Root>
+	</Loggers>
+	
+</Configuration>

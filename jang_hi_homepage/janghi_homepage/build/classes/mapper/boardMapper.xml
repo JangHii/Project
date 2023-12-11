@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="boardMapper">
+
+
+
+  	<!-- DB 명령어 쓰는곳 -->
+  	
+  	<!-- 글쓰기 -->
+  	<insert id="add" parameterType="bvo">
+  		INSERT INTO board (title , writer , content)
+  		VALUES (#{title} , #{writer} , #{content})
+  	</insert>
+  	
+  	<!-- 게시판리스트 -->
+  	<!-- controller에서 서버에서 가지고올때 이미 list라는 이름으로 바꾸었기 때문에 아이디는 list로 한다. -->
+  	<!-- request.setAttribute("list",list); -->
+  	<!-- bvo생성자중 하나를 썻기에 resultType은 bvo를 가지고간다. -->
+  	<select id="list" resultType="bvo">
+  		SELECT * FROM board ORDER BY bno DESC
+  	</select>
+  	
+  	<!-- 상세페이지 -->
+  	<select id="det" parameterType="int" resultType="bvo">
+  		SELECT * FROM board WHERE bno=#{bno}
+  	</select>
+  	
+  	<!-- 상세페이지 클릭시 카운트+1 -->
+  	<update id="read" parameterType="int">
+		UPDATE board SET readcount = readcount+1 WHERE bno=#{bno}
+	</update>
+  	
+  	
+  </mapper>
